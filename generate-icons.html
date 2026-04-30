@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Ecclesia Icon Generator</title>
+<style>body{font-family:sans-serif;text-align:center;padding:40px;background:#1C1A17;color:#F5EDD0}</style>
+</head>
+<body>
+<h1>🎨 Ecclesia Icon Generator</h1>
+<p>Cliquez sur chaque bouton pour télécharger l'icône correspondante.</p>
+<div id="icons" style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-top:30px"></div>
+<button onclick="generateAll()" style="padding:12px 30px;background:#B8962E;color:#fff;border:none;border-radius:8px;font-size:16px;cursor:pointer;margin-top:30px">📦 Tout télécharger</button>
+<script>
+const sizes=[72,96,128,144,152,192,384,512];
+function drawIcon(canvas,size){
+  const ctx=canvas.getContext('2d');
+  const r=size*0.15;
+  // Background rounded rect
+  ctx.fillStyle='#1C1A17';
+  ctx.beginPath();
+  ctx.roundRect(0,0,size,size,r);
+  ctx.fill();
+  // Gold border
+  ctx.strokeStyle='#B8962E';
+  ctx.lineWidth=size*0.04;
+  ctx.beginPath();
+  ctx.roundRect(size*0.02,size*0.02,size*0.96,size*0.96,r);
+  ctx.stroke();
+  // Cross
+  ctx.fillStyle='#B8962E';
+  const cw=size*0.12,ch=size*0.6;
+  ctx.fillRect(size*0.44,size*0.15,cw,ch);
+  ctx.fillRect(size*0.25,size*0.3,size*0.5,cw);
+  // Text
+  ctx.fillStyle='#F5EDD0';
+  ctx.font=`bold ${size*0.11}px sans-serif`;
+  ctx.textAlign='center';
+  ctx.fillText('Ecclesia',size*0.5,size*0.82);
+}
+sizes.forEach(s=>{
+  const div=document.createElement('div');div.style.textAlign='center';
+  const canvas=document.createElement('canvas');
+  canvas.width=s;canvas.height=s;canvas.style.width=s>200?'200px':'100px';canvas.style.height=canvas.style.width;
+  canvas.style.borderRadius='12px';canvas.style.boxShadow='0 4px 16px rgba(0,0,0,.3)';
+  drawIcon(canvas,s);
+  const label=document.createElement('div');label.style.marginTop='8px';label.style.fontSize='12px';
+  label.textContent=s+'x'+s;
+  const btn=document.createElement('button');
+  btn.style.cssText='margin-top:6px;padding:6px 14px;background:#B8962E;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:11px';
+  btn.textContent='⬇ Télécharger';
+  btn.onclick=()=>{
+    canvas.toBlob(blob=>{
+      const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+      a.download=`icon-${s}.png`;a.click();URL.revokeObjectURL(a.href);
+    });
+  };
+  div.appendChild(canvas);div.appendChild(label);div.appendChild(btn);
+  document.getElementById('icons').appendChild(div);
+});
+function generateAll(){
+  sizes.forEach((s,i)=>{
+    setTimeout(()=>{
+      const canvas=document.getElementById('icons').children[i].querySelector('canvas');
+      canvas.toBlob(blob=>{
+        const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+        a.download=`icon-${s}.png`;a.click();URL.revokeObjectURL(a.href);
+      });
+    },i*500);
+  });
+}
+</script>
+</body>
+</html>

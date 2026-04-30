@@ -1,0 +1,28 @@
+{
+  "name": "ecclesia-mobile",
+  "version": "1.0.0",
+  "description": "Ecclesia - Communauté et Lieux de Culte",
+  "main": "ecclesia.html",
+  "scripts": {
+    "init": "capacitor init",
+    "add:android": "capacitor add android",
+    "add:ios": "capacitor add ios",
+    "sync": "capacitor sync",
+    "open:android": "capacitor open android",
+    "open:ios": "capacitor open ios",
+    "build:android": "capacitor build android",
+    "build:ios": "capacitor build ios"
+  },
+  "keywords": ["ecclesia", "church", "christian", "community"],
+  "author": "Ecclesia Team",
+  "license": "MIT",
+  "dependencies": {
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/cli": "^6.0.0",
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/ios": "^6.0.0",
+    "@capacitor/status-bar": "^6.0.0",
+    "@capacitor/splash-screen": "^6.0.0",
+    "@capacitor/app": "^6.0.0"
+  }
+}

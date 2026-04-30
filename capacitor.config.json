@@ -1,0 +1,31 @@
+{
+  "appId": "com.ecclesia.app",
+  "appName": "Ecclesia",
+  "webDir": ".",
+  "bundledWebRuntime": false,
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "backgroundColor": "#1C1A17",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP"
+    },
+    "StatusBar": {
+      "style": "LIGHT",
+      "backgroundColor": "#B8962E"
+    }
+  },
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "buildOptions": {
+      "keystorePath": "",
+      "keystorePassword": "",
+      "keystoreAlias": ""
+    }
+  },
+  "ios": {
+    "scheme": "https"
+  }
+}
